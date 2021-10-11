@@ -39,6 +39,7 @@ class Product{
 
 let product1 = new Product ("Pants", 350)
 let product2 =  new Product ("T-Shirt", 200)
+let product3 = new Product ("Gucci Belt", 3715)
 
 console.log(product1.toString());
 console.log(product2.toString());
@@ -46,11 +47,62 @@ console.log(product2.toString());
 
 class Order{
 
-    static orderCounter
+    static orderCounter = 0;
 
-    constructor (product, counterProductsAdded){
+    static get MAX_PRODUCTS (){
+        return 10;
+    }
+
+
+    constructor (){
         this._idOrder = ++Order.orderCounter;
-        this._product = product;
-        this._counterProductsAdded;
+        this._products = [];
+        this._counterProductsAdded = 0;
+    }
+
+    get idOrder (){
+    return this._idOrder;
+    }
+
+    addProducts (product){
+    if (this._products.length < Order.MAX_PRODUCTS) {
+        this._products.push(product);
+    } 
+    else{
+        console.log("You can't add more products")
     }
 }
+
+    calculateTotal(){
+        let saleTotal = 0;
+        for(let product of this._products){
+            saleTotal += product._price;
+        }
+        return saleTotal;
+    }
+
+    showOrder(){
+        let orderProducts = "";
+        for(let product of this._products){
+            orderProducts += product.toString() + " ";
+        }
+
+        console.log (`Order: ${this._idOrder} Total: $${this.calculateTotal()}, Products: ${orderProducts}`)
+    }
+
+
+}
+
+
+let order1 = new Order();
+order1.addProducts(product1);
+order1.addProducts(product2);
+
+order1.showOrder();
+
+let order2 = new Order();
+order2.addProducts(product3);
+order2.addProducts(product1);
+order2.addProducts(product2);
+
+order2.showOrder();

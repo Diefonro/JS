@@ -3,9 +3,9 @@ html {
   min-height: 1000px;
   font-family: "helvetica neue";
   background: url(background.png), #2196f3;
-  background: url(backgroung.png),
+  background: url(background.png),
     -webkit-gradient(linear, right top, left top, from(#2196f3), to(#009688));
-  background: url(backgroung.png), linear-gradient(to left, #2196f3, #009688);
+  background: url(background.png), linear-gradient(to left, #2196f3, #009688);
 }
 
 body {
